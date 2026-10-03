@@ -20,14 +20,14 @@ class Collections extends Equatable {
   });
 
   factory Collections.fromJson(Map<String, dynamic> json) => Collections(
-    id: json['id'] as int?,
-    code: json['code'] as String?,
-    titleEn: json['title_en'] as String?,
-    titleAr: json['title_ar'] as String?,
-    authorEn: json['author_en'] as String?,
-    authorAr: json['author_ar'] as String?,
-    totalHadiths: json['total_hadiths'] as int?,
-  );
+  id: (json['id'] as num?)?.toInt(),
+  code: json['code'] as String?,
+  titleEn: json['title_en'] as String?,
+  titleAr: json['title_ar'] as String?,
+  authorEn: json['author_en'] as String?,
+  authorAr: json['author_ar'] as String?,
+  totalHadiths: (json['total_hadiths'] as num?)?.toInt(),
+);
 
   Map<String, dynamic> toJson() => {
     'id': id,

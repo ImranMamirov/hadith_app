@@ -13,9 +13,11 @@ class CollectionsRemoteDataSourceImpl implements CollectionsRemoteDataSource {
 
   @override
   Future<List<Collections>> getCollections() async {
-    final response = await dio.get(
-      ApiConstants.baseUrl,
-      queryParameters: {'apiKey': ApiConstants.apiKey}
+    final response = await dio.get<List<dynamic>>(
+      ApiConstants.collections,
+      options: Options(
+        validateStatus: (status) => status != null && status < 500,
+      )
     );
 
     if (response.statusCode == 200) {
