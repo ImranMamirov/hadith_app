@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hadith_app/core/api_constants.dart';
-import 'package:hadith_app/data/models/collections/collections.dart';
+import 'package:hadith_app/features/collections/data/models/collections.dart';
 
 abstract class CollectionsRemoteDataSource {
   Future<List<Collections>> getCollections();
@@ -17,11 +17,13 @@ class CollectionsRemoteDataSourceImpl implements CollectionsRemoteDataSource {
       ApiConstants.collections,
       options: Options(
         validateStatus: (status) => status != null && status < 500,
-      )
+      ),
     );
 
     if (response.statusCode == 200) {
-      return (response.data as List).map((e) => Collections.fromJson(e)).toList();
+      return (response.data as List)
+          .map((e) => Collections.fromJson(e))
+          .toList();
     } else {
       throw Exception('Failed to load Collections');
     }
