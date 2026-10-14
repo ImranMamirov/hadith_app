@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hadith_app/features/chapters/presentation/cubit/chapters_cubit.dart';
+import 'package:hadith_app/features/chapters/presentation/widgets/chapter_card.dart';
+
+class ChaptersPage extends StatelessWidget {
+  const new({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ChaptersCubit, ChaptersState>(
+      builder: (context, state) {
+        if (state is ChaptersLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is ChaptersLoaded) {
+          return ChapterCard(chapter: state.chapters);
+        } else if (state is ChaptersError) {
+          return Text(state.message);
+        }
+        return Text('Failed to load Chapters');
+      },
+    );
+  }
+}
