@@ -12,9 +12,7 @@ class ChaptersRemoteDataSourceImpl implements ChaptersRemoteDataSource {
 
   @override
   Future<List<Chapters>> getChapters() async {
-    final response = await dio.get(
-      ApiConstants.chapters
-    );
+    final response = await dio.get(ApiConstants.chapters);
 
     if (response.statusCode == 200) {
       return (response.data as List).map((e) => Chapters.fromJson(e)).toList();

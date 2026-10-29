@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hadith_app/core/app_router.dart';
 import 'package:hadith_app/features/collections/presentation/cubit/collections_cubit.dart';
 import 'package:hadith_app/features/collections/presentation/widgets/collections_card.dart';
 
@@ -16,7 +18,10 @@ class CollectionsPage extends StatelessWidget {
           if (state is CollectionsLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is CollectionsLoaded) {
-            return CollectionsCard(collections: state.collections);
+            return CollectionsCard(
+              collections: state.collections,
+              onTap: () => context.push(AppRouter.books),
+            );
           } else if (state is CollectionsError) {
             return Center(child: Text(state.message));
           }

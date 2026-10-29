@@ -3,7 +3,12 @@ import 'package:hadith_app/features/collections/domain/models/collections.dart';
 
 class CollectionsCard extends StatelessWidget {
   final List<Collections> collections;
-  const CollectionsCard({super.key, required this.collections});
+  final VoidCallback onTap;
+  const CollectionsCard({
+    super.key,
+    required this.collections,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +16,13 @@ class CollectionsCard extends StatelessWidget {
       itemCount: collections.length,
       itemBuilder: (context, index) {
         final item = collections[index];
-        return Card(
-          margin: EdgeInsets.all(12),
-          child: Column(
-            children: [Text(item.authorAr), Text('${item.hadithCount}')],
+        return InkWell(
+          onTap: onTap,
+          child: Card(
+            margin: EdgeInsets.all(12),
+            child: Column(
+              children: [Text(item.authorAr), Text('${item.hadithCount}')],
+            ),
           ),
         );
       },
