@@ -6,7 +6,7 @@ import 'package:hadith_app/features/book/presentation/cubit/books_cubit.dart';
 import 'package:hadith_app/features/book/presentation/widgets/book_card.dart';
 
 class BooksPage extends StatelessWidget {
-  const new({super.key});
+  const BooksPage({super.key});
 
   @override
   Widget build(BuildContext context) {

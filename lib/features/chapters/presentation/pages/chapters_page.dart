@@ -6,24 +6,29 @@ import 'package:hadith_app/features/chapters/presentation/cubit/chapters_cubit.d
 import 'package:hadith_app/features/chapters/presentation/widgets/chapter_card.dart';
 
 class ChaptersPage extends StatelessWidget {
-  const new({super.key});
+  const ChaptersPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChaptersCubit, ChaptersState>(
-      builder: (context, state) {
-        if (state is ChaptersLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is ChaptersLoaded) {
-          return ChapterCard(
-            chapter: state.chapters,
-            onTap: () => context.push(AppRouter.hadiths),
-          );
-        } else if (state is ChaptersError) {
-          return Text(state.message);
-        }
-        return Text('Failed to load Chapters');
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chapters'),
+      ),
+      body: BlocBuilder<ChaptersCubit, ChaptersState>(
+        builder: (context, state) {
+          if (state is ChaptersLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is ChaptersLoaded) {
+            return ChapterCard(
+              chapter: state.chapters,
+              onTap: () => context.push(AppRouter.hadiths),
+            );
+          } else if (state is ChaptersError) {
+            return Text(state.message);
+          }
+          return Text('Failed to load Chapters');
+        },
+      ),
     );
   }
 }

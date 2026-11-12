@@ -12,7 +12,7 @@ class HadithsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Books')),
+      appBar: AppBar(title: Text('Hadiths')),
       body: BlocBuilder<HadithsCubit, HadithsState>(
         builder: (context, state) {
           if (state is HadithsLoading) {

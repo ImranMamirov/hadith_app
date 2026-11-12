@@ -5,6 +5,7 @@ import 'package:hadith_app/features/hadiths/domain/models/hadiths.dart';
 class HadithCard extends StatelessWidget {
   final List<Hadiths> hadith;
   final VoidCallback onTap;
+
   const HadithCard({super.key, required this.hadith, required this.onTap});
 
   @override
@@ -17,7 +18,11 @@ class HadithCard extends StatelessWidget {
           onTap: onTap,
           child: Card(
             margin: EdgeInsets.all(12),
-            child: Column(children: [Text('${item.arabic}')]),
+            child: Column(
+              children: [
+                Text('${item.arabic}', style: TextStyle(fontSize: 24)),
+              ],
+            ),
           ),
         );
       },
